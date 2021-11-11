@@ -1,0 +1,43 @@
+name: weather_app
+description: Just another weather app
+
+publish_to: 'none'
+
+version: 1.0.0
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  equatable: ^2.0.2
+  path_provider: ^2.0.2
+  flutter_displaymode: ^0.3.2
+  easy_localization: ^3.0.0
+  url_launcher: ^6.0.6
+  ionicons: ^0.1.2
+  retrofit: ^2.2.0
+  logger: ^1.1.0
+  freezed_annotation: ^0.15.0
+  json_annotation: ^4.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.3
+  retrofit_generator: ^2.2.0
+  build_runner: ^2.1.5
+  freezed: ^0.15.0+1
+  json_serializable: ^6.0.1
+
+flutter:
+
+  assets:
+    - assets/translations/
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-SemiBold.ttf
