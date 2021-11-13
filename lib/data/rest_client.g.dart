@@ -16,9 +16,13 @@ class _RestClient implements RestClient {
   String? baseUrl;
 
   @override
-  Future<WeatherResponse> getWeatherForCity(cityName, apiKey) async {
+  Future<WeatherResponse> getWeatherForCity(cityName, apiKey, units) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'q': cityName, r'appid': apiKey};
+    final queryParameters = <String, dynamic>{
+      r'q': cityName,
+      r'appid': apiKey,
+      r'units': units
+    };
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(

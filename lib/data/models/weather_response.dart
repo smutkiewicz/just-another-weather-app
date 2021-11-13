@@ -10,6 +10,8 @@ class WeatherResponse with _$WeatherResponse {
   factory WeatherResponse(
     String name,
     WeatherResponseMain main,
+    List<WeatherResponseWeather> weather,
+    WeatherResponseWind wind,
   ) = _WeatherResponse;
 
   factory WeatherResponse.fromJson(Map<String, dynamic> json) =>
@@ -24,4 +26,26 @@ class WeatherResponseMain with _$WeatherResponseMain {
 
   factory WeatherResponseMain.fromJson(Map<String, dynamic> json) =>
       _$WeatherResponseMainFromJson(json);
+}
+
+@freezed
+class WeatherResponseWeather with _$WeatherResponseWeather {
+  factory WeatherResponseWeather(
+    String description,
+    String icon,
+  ) = _WeatherResponseWeather;
+
+  factory WeatherResponseWeather.fromJson(Map<String, dynamic> json) =>
+      _$WeatherResponseWeatherFromJson(json);
+}
+
+@freezed
+class WeatherResponseWind with _$WeatherResponseWind {
+  factory WeatherResponseWind(
+    double speed,
+    double deg,
+  ) = _WeatherResponseWind;
+
+  factory WeatherResponseWind.fromJson(Map<String, dynamic> json) =>
+      _$WeatherResponseWindFromJson(json);
 }

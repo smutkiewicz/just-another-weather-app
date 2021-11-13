@@ -15,5 +15,6 @@ abstract class RestClient {
   Future<WeatherResponse> getWeatherForCity(
     @Query('q') String cityName,
     @Query('appid') String apiKey,
+    @Query('units') String units,
   );
 }
