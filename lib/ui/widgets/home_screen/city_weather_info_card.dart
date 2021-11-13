@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:weather_app/ui/widgets/common/shimmer.dart';
 import 'package:weather_app/ui/widgets/common/weather_icon.dart';
 
-class WeatherInfoCard extends StatelessWidget {
+class CityWeatherInfoCard extends StatelessWidget {
   final String city;
   final double temperature;
   final double windSpeed;
@@ -11,7 +11,7 @@ class WeatherInfoCard extends StatelessWidget {
   final bool isLoading;
   final VoidCallback onTap;
 
-  const WeatherInfoCard({
+  const CityWeatherInfoCard({
     Key? key,
     required this.city,
     required this.temperature,

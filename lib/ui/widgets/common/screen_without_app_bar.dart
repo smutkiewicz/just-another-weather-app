@@ -14,6 +14,7 @@ class ScreenWithoutAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        bottom: false,
         child: SizedBox(
           height: double.infinity,
           child: SingleChildScrollView(

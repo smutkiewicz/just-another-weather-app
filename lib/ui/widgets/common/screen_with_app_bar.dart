@@ -39,6 +39,7 @@ class ScreenWithAppBar extends StatelessWidget {
           ];
         },
         body: SafeArea(
+          bottom: false,
           child: SizedBox(
             height: double.infinity,
             child: SingleChildScrollView(

@@ -8,7 +8,7 @@ import 'package:weather_app/data/models/weather_response.dart';
 import 'package:weather_app/ui/screens/details_screen.dart';
 import 'package:weather_app/ui/widgets/common/header.dart';
 import 'package:weather_app/ui/widgets/common/screen_without_app_bar.dart';
-import 'package:weather_app/ui/widgets/common/weather_info_card.dart';
+import 'package:weather_app/ui/widgets/home_screen/city_weather_info_card.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String route = '/home';
@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 () {
                   final WeatherResponse? item =
                       controller.forecastList.value?[index];
-                  return WeatherInfoCard(
+                  return CityWeatherInfoCard(
                     isLoading: item == null,
                     city: item?.name ?? '',
                     temperature: item?.main.temp ?? 0.0,
@@ -63,7 +63,6 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-          const SizedBox(height: 36.0),
         ],
       ),
     );

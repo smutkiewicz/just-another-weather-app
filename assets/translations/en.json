@@ -2,5 +2,6 @@
   "app_name": "Just Another Weather App",
   "wind_speed": "Wind speed",
   "temperature": "Temperature",
-  "divider_info": "Don't know what to type here"
+  "divider_info": "General",
+  "14_days_forecast": "14 days forecast"
 }

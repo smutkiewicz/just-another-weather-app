@@ -3,25 +3,22 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:logger/logger.dart';
 import 'package:weather_app/config/theme.dart';
-import 'package:weather_app/controller/weather_controller.dart';
-import 'package:weather_app/data/repository/weather_repository.dart';
-import 'package:weather_app/data/rest_service.dart';
+import 'package:weather_app/controller/app_binding.dart';
 import 'package:weather_app/ui/screens/details_screen.dart';
 import 'package:weather_app/ui/screens/home_screen.dart';
 
 final Logger logger = Logger();
 
-void initializeControllers() {
+/*void initializeControllers() {
   final RestService service = RestService();
   Get.put(WeatherController(WeatherRepository(service)));
-}
+  Get.put(WeatherDetailsController(WeatherRepository(service)));
+}*/
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,8 +26,6 @@ void main() async {
   if (Platform.isAndroid) {
     await FlutterDisplayMode.setHighRefreshRate();
   }
-
-  initializeControllers();
 
   runApp(
     EasyLocalization(
@@ -50,7 +45,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Just Another Weather App',
-      getPages: [
+      getPages: <GetPage>[
         GetPage(name: HomeScreen.route, page: () => const HomeScreen()),
         GetPage(
           name: DetailsScreen.route,
@@ -58,6 +53,7 @@ class MyApp extends StatelessWidget {
           transition: Transition.cupertino,
         ),
       ],
+      initialBinding: AppBinding(),
       theme: AppThemes.lightTheme,
       debugShowCheckedModeBanner: false,
       localizationsDelegates: context.localizationDelegates,
