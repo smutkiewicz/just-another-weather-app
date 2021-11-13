@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/ui/widgets/common/shimmer.dart';
+import 'package:weather_app/ui/widgets/common/weather_icon.dart';
 
 class WeatherInfoCard extends StatelessWidget {
   final String city;
@@ -8,6 +9,7 @@ class WeatherInfoCard extends StatelessWidget {
   final String iconId;
   final bool isPrimaryColor;
   final bool isLoading;
+  final VoidCallback onTap;
 
   const WeatherInfoCard({
     Key? key,
@@ -15,7 +17,8 @@ class WeatherInfoCard extends StatelessWidget {
     required this.temperature,
     required this.windSpeed,
     required this.iconId,
-    required this.isPrimaryColor,
+    required this.onTap,
+    this.isPrimaryColor = false,
     this.isLoading = true,
   }) : super(key: key);
 
@@ -32,40 +35,43 @@ class WeatherInfoCard extends StatelessWidget {
             ? Theme.of(context).primaryColor
             : Theme.of(context).cardColor,
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(8)),
+          borderRadius: BorderRadius.all(Radius.circular(8.0)),
         ),
         child: isLoading
             ? const SizedBox()
-            : Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      city,
-                      style: textTheme.headline5!.apply(fontFamily: 'Poppins'),
-                    ),
-                    const Spacer(),
-                    Image.network(
-                      'http://openweathermap.org/img/wn/$iconId@2x.png',
-                      width: 48.0,
-                      color: textTheme.subtitle2!.color,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '$temperature°C',
-                          style: textTheme.headline5,
-                        ),
-                        Text(
-                          '$windSpeed m/s',
-                          style: textTheme.headline6,
-                        ),
-                      ],
-                    ),
-                  ],
+            : InkWell(
+                onTap: onTap,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        city,
+                        style:
+                            textTheme.headline5!.apply(fontFamily: 'Poppins'),
+                      ),
+                      const Spacer(),
+                      WeatherIcon(
+                        iconId: iconId,
+                        size: 48.0,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '$temperature°C',
+                            style: textTheme.headline5,
+                          ),
+                          Text(
+                            '$windSpeed m/s',
+                            style: textTheme.headline6,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
       ),

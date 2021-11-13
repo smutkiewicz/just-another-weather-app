@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:weather_app/ui/widgets/common/weather_icon.dart';
 
-class GridItem extends StatelessWidget {
-  final String title;
-  final String subtitle;
+class InfoCard extends StatelessWidget {
+  final String description;
+  final String iconId;
   final bool isPrimaryColor;
 
-  const GridItem({
+  const InfoCard({
     Key? key,
-    required this.title,
-    required this.subtitle,
+    required this.description,
+    required this.iconId,
     this.isPrimaryColor = false,
   }) : super(key: key);
 
@@ -25,22 +26,20 @@ class GridItem extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Row(
           children: <Widget>[
+            WeatherIcon(
+              iconId: iconId,
+              size: 88.0,
+            ),
+            const SizedBox(width: 16.0),
             Text(
-              title,
+              description,
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
               style: Theme.of(context)
                   .textTheme
                   .subtitle1!
-                  .apply(fontWeightDelta: 2),
-            ),
-            Text(
-              subtitle,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6!
                   .apply(fontWeightDelta: 2),
             ),
           ],

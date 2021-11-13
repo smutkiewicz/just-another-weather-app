@@ -16,7 +16,6 @@ dependencies:
   path_provider: ^2.0.2
   flutter_displaymode: ^0.3.2
   easy_localization: ^3.0.0
-  url_launcher: ^6.0.6
   ionicons: ^0.1.2
   retrofit: ^2.2.0
   logger: ^1.1.0

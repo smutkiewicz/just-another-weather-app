@@ -6,9 +6,7 @@ class AppBarGone extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    final brightness = Theme.of(context).brightness;
-
-    /// This is a reliable way to change the statusbar icons and color
+    final Brightness brightness = Theme.of(context).brightness;
     return AppBar(
       backwardsCompatibility: false,
       systemOverlayStyle: SystemUiOverlayStyle(

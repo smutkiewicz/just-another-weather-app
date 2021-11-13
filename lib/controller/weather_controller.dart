@@ -5,9 +5,17 @@ import 'package:weather_app/data/repository/weather_repository.dart';
 import 'package:weather_app/main.dart';
 
 class WeatherController extends GetxController {
-  final List<String> citiesToFetch = <String>['Warsaw', 'Milan', 'London'];
   final WeatherRepository _repository;
 
+  final List<String> citiesToFetch = <String>[
+    'Warsaw',
+    'Milan',
+    'London',
+    'Kyiv',
+    'Berlin',
+    'Paris',
+    'Gdansk'
+  ];
   final Rxn<List<WeatherResponse>> forecastList = Rxn<List<WeatherResponse>>();
 
   WeatherController(this._repository);
@@ -18,8 +26,8 @@ class WeatherController extends GetxController {
       for (final String city in citiesToFetch) {
         final WeatherResponse resp = await _repository.getWeatherForCity(city);
         final double temp = resp.main.temp;
-        final WeatherResponseMain main = resp.main.copyWith(
-            temp: 1.0 * temp.round());
+        final WeatherResponseMain main =
+            resp.main.copyWith(temp: 1.0 * temp.round());
         final WeatherResponse forecast = resp.copyWith(main: main);
         list.add(forecast);
       }
