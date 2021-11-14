@@ -8,15 +8,20 @@ class WeatherDetailsController extends GetxController {
   final WeatherRepository _repository;
   final int daysCount = 14;
 
-  final Rxn<DailyWeatherResponse> dailyWeather = Rxn<DailyWeatherResponse>();
+  DailyWeatherResponse? dailyWeather;
 
   WeatherDetailsController(this._repository);
+
+  factory WeatherDetailsController.create() {
+    return WeatherDetailsController(Get.find<WeatherRepository>());
+  }
 
   Future<void> getDailyWeatherForCity(String city) async {
     try {
       final DailyWeatherResponse resp =
           await _repository.getDailyWeatherForCity(city, daysCount);
-      dailyWeather.value = resp;
+      dailyWeather = resp;
+      update();
       logger.d('Weather data successfully fetched!');
     } catch (e) {
       logger.e('Error fetching weather data!', e);

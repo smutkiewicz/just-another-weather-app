@@ -6,7 +6,6 @@ import 'package:weather_app/main.dart';
 
 class WeatherController extends GetxController {
   final WeatherRepository _repository;
-
   final List<String> citiesToFetch = <String>[
     'Warsaw',
     'Milan',
@@ -16,9 +15,14 @@ class WeatherController extends GetxController {
     'Paris',
     'Gdansk'
   ];
+
   final Rxn<List<WeatherResponse>> forecastList = Rxn<List<WeatherResponse>>();
 
   WeatherController(this._repository);
+
+  factory WeatherController.create() {
+    return WeatherController(Get.find<WeatherRepository>());
+  }
 
   Future<void> getWeather() async {
     try {

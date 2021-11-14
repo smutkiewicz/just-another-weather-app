@@ -10,7 +10,9 @@ class AppBinding implements Bindings {
   @override
   void dependencies() {
     final RestService service = RestService();
-    Get.put(WeatherController(WeatherRepository(service)));
-    Get.put(WeatherDetailsController(WeatherRepository(service)));
+    final WeatherRepository repo = WeatherRepository(service);
+    Get.put(repo);
+    Get.put(WeatherController(repo));
+    Get.put(WeatherDetailsController(repo));
   }
 }

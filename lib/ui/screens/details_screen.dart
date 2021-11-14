@@ -80,8 +80,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 itemCount: controller.daysCount,
                 itemBuilder: (BuildContext context, int index) {
                   final DailyWeatherResponseListItem? item =
-                      controller.dailyWeather.value?.list[index];
-                  final bool isLoading = controller.dailyWeather.value == null;
+                      controller.dailyWeather?.list[index];
+                  final bool isLoading = controller.dailyWeather == null;
                   return InfoCard(
                     isLoading: isLoading,
                     title: item?.date() ?? '',
